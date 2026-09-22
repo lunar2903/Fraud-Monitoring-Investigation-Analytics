@@ -5,8 +5,8 @@ __pycache__/
 venv/
 
 # Large datasets
-data/*.csv
-data/**/*.csv
+#data/*.csv
+#data/**/*.csv
 
 # Jupyter
 .ipynb_checkpoints/
