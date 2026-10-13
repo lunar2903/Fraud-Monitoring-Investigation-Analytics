@@ -1,0 +1,8 @@
+relationship AutoDetected_431530b7-fb9c-47d7-adc7-1bc3184c083d
+	fromColumn: investigation_queue.risk_category
+	toColumn: risk_scoring_summary.risk_category
+
+relationship AutoDetected_15f526f1-f783-4abe-b7a0-29ecd6349d2a
+	fromColumn: investigation_queue.type
+	toColumn: fraud_by_type.type
+

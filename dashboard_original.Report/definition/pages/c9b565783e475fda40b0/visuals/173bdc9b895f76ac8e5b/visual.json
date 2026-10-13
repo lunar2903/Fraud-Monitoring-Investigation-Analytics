@@ -1,0 +1,137 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "173bdc9b895f76ac8e5b",
+  "position": {
+    "x": 14.834437086092716,
+    "y": 267.0198675496689,
+    "z": 3003,
+    "height": 249.47595118449391,
+    "width": 616.10911701363966,
+    "tabOrder": 3003
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fraud_by_type"
+                    }
+                  },
+                  "Property": "type"
+                }
+              },
+              "queryRef": "fraud_by_type.type",
+              "nativeQueryRef": "type",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fraud_by_type"
+                        }
+                      },
+                      "Property": "fraud_count"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(fraud_by_type.fraud_count)",
+              "nativeQueryRef": "Sum of fraud_count"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "fraud_by_type"
+                      }
+                    },
+                    "Property": "fraud_count"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Fraud Transactions by Type'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ae79200f51467971930c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fraud_by_type"
+              }
+            },
+            "Property": "type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "0f1c5362b4add2ee3740",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fraud_by_type"
+                  }
+                },
+                "Property": "fraud_count"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

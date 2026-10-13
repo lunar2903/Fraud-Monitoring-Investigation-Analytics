@@ -1,0 +1,87 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 38
+          },
+          "nodeIndex": "risk_scoring_summary",
+          "nodeLineageTag": "6404f153-bd3f-441c-b61e-18abc9d1181c",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 284,
+            "y": 0
+          },
+          "nodeIndex": "investigation_queue",
+          "nodeLineageTag": "87c0cb06-901a-4b58-a1d1-b1fb88871bc4",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 568,
+            "y": 50
+          },
+          "nodeIndex": "fraud_signal_performance",
+          "nodeLineageTag": "11693d7c-f2cd-4657-9f4f-9111f1ccb8ed",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1136,
+            "y": 50
+          },
+          "nodeIndex": "fraud_signal_combinations",
+          "nodeLineageTag": "6b761af3-079f-47be-bc1d-e571dab44454",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1420,
+            "y": 62
+          },
+          "nodeIndex": "fraud_by_type",
+          "nodeLineageTag": "7c1b8701-0be1-494b-a406-91525a7b335c",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

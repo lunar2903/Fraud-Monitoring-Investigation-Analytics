@@ -1,0 +1,159 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "6d048e87e3348c19d164",
+  "position": {
+    "x": 678.14569536423846,
+    "y": 267.0198675496689,
+    "z": 3001,
+    "height": 249.47595118449391,
+    "width": 638.16223977028,
+    "tabOrder": 3001
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "risk_scoring_summary"
+                    }
+                  },
+                  "Property": "risk_category"
+                }
+              },
+              "queryRef": "risk_scoring_summary.risk_category",
+              "nativeQueryRef": "risk_category",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "risk_scoring_summary"
+                        }
+                      },
+                      "Property": "fraud_rate_percent"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "CountNonNull(risk_scoring_summary.fraud_rate_percent)",
+              "nativeQueryRef": "Average of fraud_rate_percent"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "risk_scoring_summary"
+                      }
+                    },
+                    "Property": "fraud_rate_percent"
+                  }
+                },
+                "Function": 1
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Fraud Rate (%)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Fraud Rate by Risk Category'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "63570b3bc0985b09b718",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "risk_scoring_summary"
+              }
+            },
+            "Property": "risk_category"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "4ddb8a5d362e7d2073cc",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "risk_scoring_summary"
+                  }
+                },
+                "Property": "fraud_rate_percent"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "49dd52cf8dabc82f7157",
+  "position": {
+    "x": 1452.7494615936828,
+    "y": 181.93826274228286,
+    "z": 3008,
+    "height": 85,
+    "width": 467,
+    "tabOrder": 3008
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "investigation_queue"
+                    }
+                  },
+                  "Property": "risk_score"
+                }
+              },
+              "queryRef": "investigation_queue.risk_score",
+              "nativeQueryRef": "risk_score",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Between'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "861c73e8e5dc316f9a0d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "investigation_queue"
+              }
+            },
+            "Property": "risk_score"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

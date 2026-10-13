@@ -1,0 +1,137 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "b9f9fa41ad507609c8ae",
+  "position": {
+    "x": 966.35761589403978,
+    "y": 530.86092715231791,
+    "z": 3010,
+    "height": 224.63576158940398,
+    "width": 943.04635761589407,
+    "tabOrder": 3010
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fraud_signal_performance"
+                    }
+                  },
+                  "Property": "signal"
+                }
+              },
+              "queryRef": "fraud_signal_performance.signal",
+              "nativeQueryRef": "signal",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fraud_signal_performance"
+                        }
+                      },
+                      "Property": "fraud_capture_rate_percent"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(fraud_signal_performance.fraud_capture_rate_percent)",
+              "nativeQueryRef": "Average of fraud_capture_rate_percent"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "fraud_signal_performance"
+                      }
+                    },
+                    "Property": "fraud_capture_rate_percent"
+                  }
+                },
+                "Function": 1
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Fraud Capture Rate by Signal'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "83ebb7844fb347352567",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fraud_signal_performance"
+              }
+            },
+            "Property": "signal"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "bcff85024ba5f2a9141e",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fraud_signal_performance"
+                  }
+                },
+                "Property": "fraud_capture_rate_percent"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

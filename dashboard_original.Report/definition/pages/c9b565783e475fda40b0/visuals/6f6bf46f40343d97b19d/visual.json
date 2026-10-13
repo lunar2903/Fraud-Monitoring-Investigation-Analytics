@@ -1,0 +1,77 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "6f6bf46f40343d97b19d",
+  "position": {
+    "x": 977.22900215362529,
+    "y": 181.93826274228286,
+    "z": 3007,
+    "height": 85,
+    "width": 467,
+    "tabOrder": 3007
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "investigation_queue"
+                    }
+                  },
+                  "Property": "transaction_period"
+                }
+              },
+              "queryRef": "investigation_queue.transaction_period",
+              "nativeQueryRef": "transaction_period",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "7853db19a79b4e71a369",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "investigation_queue"
+              }
+            },
+            "Property": "transaction_period"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "137936c33ffa3dc74f8e",
+  "position": {
+    "x": 15.161521895190239,
+    "y": 181.93826274228286,
+    "z": 3005,
+    "height": 85,
+    "width": 467,
+    "tabOrder": 3005
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "risk_scoring_summary"
+                    }
+                  },
+                  "Property": "risk_category"
+                }
+              },
+              "queryRef": "risk_scoring_summary.risk_category",
+              "nativeQueryRef": "risk_category",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Risk Category'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "2405ff90496dd3a58f89",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "risk_scoring_summary"
+              }
+            },
+            "Property": "risk_category"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

@@ -1,0 +1,111 @@
+table risk_scoring_summary
+	lineageTag: 6404f153-bd3f-441c-b61e-18abc9d1181c
+
+	measure 'Total Transactions' = SUM(risk_scoring_summary[transaction_count])
+		formatString: 0
+		lineageTag: 1a306a4f-6f82-40b1-b227-b4f4f2288ecf
+
+	measure 'Fraud Transactions' =
+			
+			SUM(risk_scoring_summary[fraud_count])
+		formatString: 0
+		lineageTag: 06901326-03a5-4f38-96a6-e47b20922007
+
+	measure 'High Critical Cases' =
+			
+			CALCULATE(
+			    SUM(risk_scoring_summary[transaction_count]),
+			    risk_scoring_summary[risk_category] IN {"HIGH", "CRITICAL"}
+			)
+		formatString: 0
+		lineageTag: 990e33dd-5bd9-43bf-a572-53447f5558ea
+
+	measure 'Fraud Rate' =
+			
+			DIVIDE(
+			    [Fraud Transactions],
+			    [Total Transactions],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e38dde0c-a5b2-4868-b2fe-a91f6f9a6db7
+
+	measure 'Total Fraud Amount' =
+			
+			SUMX(
+			    risk_scoring_summary,
+			    risk_scoring_summary[fraud_count] *
+			    risk_scoring_summary[average_amount]
+			)
+		lineageTag: 9f7d2ac6-6a78-419f-877d-35f4489b9f7c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column risk_category
+		dataType: string
+		lineageTag: 77c1f267-b9aa-488c-83d1-44886d6d2774
+		summarizeBy: none
+		sourceColumn: risk_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column transaction_count
+		dataType: int64
+		formatString: 0
+		lineageTag: abf81e06-0353-4d01-b3be-54d1df765a27
+		summarizeBy: none
+		sourceColumn: transaction_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column fraud_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 2f535148-2678-4ca7-b584-b549a9469abf
+		summarizeBy: none
+		sourceColumn: fraud_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column fraud_rate_percent
+		dataType: double
+		lineageTag: 40d0bc68-b766-487d-b1fe-0fa608e4372c
+		summarizeBy: none
+		sourceColumn: fraud_rate_percent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_amount
+		dataType: double
+		lineageTag: 54260a0a-459f-4d77-9bda-b72c91cf7bd5
+		summarizeBy: none
+		sourceColumn: total_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column average_amount
+		dataType: double
+		lineageTag: 0dc29187-6f05-4198-91f9-fdcb46e033ef
+		summarizeBy: none
+		sourceColumn: average_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition risk_scoring_summary = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\Project\Fraud-Monitoring-Investigation-Analytics\data\output\risk_scoring_summary.csv"), [Delimiter = ",", Columns = 6, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"risk_category", type text}, {"transaction_count", Int64.Type}, {"fraud_count", Int64.Type}, {"fraud_rate_percent", type number}, {"total_amount", type number}, {"average_amount", type number}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_ResultType = Table
+

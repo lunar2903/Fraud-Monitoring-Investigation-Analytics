@@ -1,0 +1,224 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "3b0e9522da89681a2c17",
+  "position": {
+    "x": 966.35761589403978,
+    "y": 765.03311258278143,
+    "z": 3006,
+    "height": 297.74834437086093,
+    "width": 943.04635761589407,
+    "tabOrder": 3006
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "investigation_queue"
+                    }
+                  },
+                  "Property": "transaction_id"
+                }
+              },
+              "queryRef": "Sum(investigation_queue.transaction_id)",
+              "nativeQueryRef": "transaction_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "investigation_queue"
+                    }
+                  },
+                  "Property": "type"
+                }
+              },
+              "queryRef": "investigation_queue.type",
+              "nativeQueryRef": "type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "investigation_queue"
+                    }
+                  },
+                  "Property": "amount"
+                }
+              },
+              "queryRef": "Sum(investigation_queue.amount)",
+              "nativeQueryRef": "amount"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "investigation_queue"
+                    }
+                  },
+                  "Property": "transaction_hour"
+                }
+              },
+              "queryRef": "Sum(investigation_queue.transaction_hour)",
+              "nativeQueryRef": "transaction_hour"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "investigation_queue"
+                    }
+                  },
+                  "Property": "risk_score"
+                }
+              },
+              "queryRef": "Sum(investigation_queue.risk_score)",
+              "nativeQueryRef": "risk_score"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "investigation_queue"
+                    }
+                  },
+                  "Property": "risk_category"
+                }
+              },
+              "queryRef": "investigation_queue.risk_category",
+              "nativeQueryRef": "risk_category"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "investigation_queue"
+                    }
+                  },
+                  "Property": "risk_reasons"
+                }
+              },
+              "queryRef": "investigation_queue.risk_reasons",
+              "nativeQueryRef": "risk_reasons"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "848fc439067af3b0742e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "investigation_queue"
+              }
+            },
+            "Property": "type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "442f45017bdc5da4238e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "investigation_queue"
+              }
+            },
+            "Property": "risk_category"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "4cefe27b51f69894c3fa",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "investigation_queue"
+              }
+            },
+            "Property": "risk_reasons"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7e8e2e7427920577992d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "investigation_queue"
+              }
+            },
+            "Property": "transaction_id"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "eee0811ccdf57c0fc22f",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "investigation_queue"
+              }
+            },
+            "Property": "amount"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "504624c86bc264f8252b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "investigation_queue"
+              }
+            },
+            "Property": "transaction_hour"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0398e5a6b8bc7e7a1bb6",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "investigation_queue"
+              }
+            },
+            "Property": "risk_score"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

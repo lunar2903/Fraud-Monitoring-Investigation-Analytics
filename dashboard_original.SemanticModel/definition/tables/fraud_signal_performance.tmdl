@@ -1,0 +1,74 @@
+table fraud_signal_performance
+	lineageTag: 11693d7c-f2cd-4657-9f4f-9111f1ccb8ed
+
+	measure 'Average Fraud Amount' =
+			
+			DIVIDE([Total Fraud Amount], [Fraud Transactions], 0)
+		lineageTag: e70cae58-8413-4ca4-89fa-850912d42bcb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Investigation Cases' =
+			
+			COUNTROWS(investigation_queue)
+		formatString: 0
+		lineageTag: ebdf1f99-02b4-496c-9657-619d542eedb4
+
+	column signal
+		dataType: string
+		lineageTag: a2c90a89-7f9b-4787-8961-f0ba331ac134
+		summarizeBy: none
+		sourceColumn: signal
+
+		annotation SummarizationSetBy = Automatic
+
+	column flagged_transactions
+		dataType: int64
+		formatString: 0
+		lineageTag: f1ac8905-52a5-45bf-9b2d-938b07875a95
+		summarizeBy: sum
+		sourceColumn: flagged_transactions
+
+		annotation SummarizationSetBy = Automatic
+
+	column fraud_captured
+		dataType: int64
+		formatString: 0
+		lineageTag: 449da522-459e-48b4-ac96-d92568c8ec8b
+		summarizeBy: sum
+		sourceColumn: fraud_captured
+
+		annotation SummarizationSetBy = Automatic
+
+	column signal_fraud_rate_percent
+		dataType: double
+		lineageTag: 2f0a0ed0-c24e-465e-9994-3460bed10230
+		summarizeBy: sum
+		sourceColumn: signal_fraud_rate_percent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fraud_capture_rate_percent
+		dataType: double
+		lineageTag: 6b260ccf-28e9-4c08-8f23-f91ed220d2c5
+		summarizeBy: sum
+		sourceColumn: fraud_capture_rate_percent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fraud_signal_performance = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\Project\Fraud-Monitoring-Investigation-Analytics\data\output\fraud_signal_performance.csv"), [Delimiter = ",", Columns = 5, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"signal", type text}, {"flagged_transactions", Int64.Type}, {"fraud_captured", Int64.Type}, {"signal_fraud_rate_percent", type number}, {"fraud_capture_rate_percent", type number}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_ResultType = Table
+

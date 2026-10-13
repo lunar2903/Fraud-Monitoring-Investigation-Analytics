@@ -1,0 +1,50 @@
+table fraud_by_type
+	lineageTag: 7c1b8701-0be1-494b-a406-91525a7b335c
+
+	column type
+		dataType: string
+		lineageTag: 4a6b583f-400e-4c9b-97ff-4e067cf0abba
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column transaction_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 7c905a77-bbe3-45c0-8910-b433360c8d5c
+		summarizeBy: none
+		sourceColumn: transaction_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column fraud_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 72b6e5e9-47cc-4a57-8023-d1b45c228dd4
+		summarizeBy: none
+		sourceColumn: fraud_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column fraud_rate_percent
+		dataType: double
+		lineageTag: 34f29252-f277-434f-9c48-544c9df05740
+		summarizeBy: none
+		sourceColumn: fraud_rate_percent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fraud_by_type = m
+		mode: import
+		source =
+				let
+				  Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("VYwxDsMgDEXv4jmqbGMCHmlK1QylVUKGCEW5/y0KLFEH61v/Pf1SIC8hrc+4wADWsKLWR1BdDby50Xs4hgJTWF/nZ8u1ZTbOIjaNaOwaecFLm1Mtyaiyl4b7NfoN+zumvkGWRO0ffcT7nPuqGL7I8QM=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"type" = _t, transaction_count = _t, fraud_count = _t, fraud_rate_percent = _t]),
+				  #"Changed column type" = Table.TransformColumnTypes(Source, {{"type", type text}, {"transaction_count", Int64.Type}, {"fraud_count", Int64.Type}, {"fraud_rate_percent", type number}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_ResultType = Table
+

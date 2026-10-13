@@ -1,0 +1,167 @@
+table investigation_queue
+	lineageTag: 87c0cb06-901a-4b58-a1d1-b1fb88871bc4
+
+	column transaction_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 43413674-8293-4711-b47a-7533767d4649
+		summarizeBy: sum
+		sourceColumn: transaction_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column step
+		dataType: int64
+		formatString: 0
+		lineageTag: 429ae9a2-46c1-4478-92e8-c5462c94576f
+		summarizeBy: sum
+		sourceColumn: step
+
+		annotation SummarizationSetBy = Automatic
+
+	column transaction_hour
+		dataType: int64
+		formatString: 0
+		lineageTag: 93da8ed9-3ae3-4870-8a94-e5c146f59bc6
+		summarizeBy: sum
+		sourceColumn: transaction_hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column transaction_period
+		dataType: string
+		lineageTag: d34f413f-8c52-4857-8811-e714f0f643b8
+		summarizeBy: none
+		sourceColumn: transaction_period
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: ebeb79c6-f7a2-48be-9a02-3aca044d8139
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount
+		dataType: double
+		lineageTag: 9e4785eb-37db-4748-9ee6-38848992280f
+		summarizeBy: sum
+		sourceColumn: amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column nameOrig
+		dataType: string
+		lineageTag: 420a31f8-320b-4c52-b1c0-e93df84ea179
+		summarizeBy: none
+		sourceColumn: nameOrig
+
+		annotation SummarizationSetBy = Automatic
+
+	column nameDest
+		dataType: string
+		lineageTag: 76f5de17-e9ba-4a93-9ade-88385330c300
+		summarizeBy: none
+		sourceColumn: nameDest
+
+		annotation SummarizationSetBy = Automatic
+
+	column oldbalanceOrg
+		dataType: double
+		lineageTag: 2b6a508d-a728-4453-ab66-6ebc3492a109
+		summarizeBy: sum
+		sourceColumn: oldbalanceOrg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column newbalanceOrig
+		dataType: double
+		lineageTag: cd607d00-0a9d-453e-8a91-1d39d03623d7
+		summarizeBy: sum
+		sourceColumn: newbalanceOrig
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column oldbalanceDest
+		dataType: double
+		lineageTag: 74db438e-3d26-48e0-89ad-3a881520b358
+		summarizeBy: sum
+		sourceColumn: oldbalanceDest
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column newbalanceDest
+		dataType: double
+		lineageTag: 6e39358c-b9f1-43e3-bdc4-43ae661193f9
+		summarizeBy: sum
+		sourceColumn: newbalanceDest
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column isFraud
+		dataType: int64
+		formatString: 0
+		lineageTag: 2ce26fef-10c6-4dc5-8f01-21fc56279be7
+		summarizeBy: sum
+		sourceColumn: isFraud
+
+		annotation SummarizationSetBy = Automatic
+
+	column isFlaggedFraud
+		dataType: int64
+		formatString: 0
+		lineageTag: f25fa8a2-0e98-409d-addb-3e352c977549
+		summarizeBy: sum
+		sourceColumn: isFlaggedFraud
+
+		annotation SummarizationSetBy = Automatic
+
+	column risk_score
+		dataType: int64
+		formatString: 0
+		lineageTag: 541402a2-cd8a-413e-a997-47fe4809ffeb
+		summarizeBy: sum
+		sourceColumn: risk_score
+
+		annotation SummarizationSetBy = Automatic
+
+	column risk_category
+		dataType: string
+		lineageTag: 86204d0b-00a4-4083-9c17-4f6dbd225c85
+		summarizeBy: none
+		sourceColumn: risk_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column risk_reasons
+		dataType: string
+		lineageTag: e1ab8f97-3994-4b88-ad54-3a85889d7bd7
+		summarizeBy: none
+		sourceColumn: risk_reasons
+
+		annotation SummarizationSetBy = Automatic
+
+	partition investigation_queue = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\Project\Fraud-Monitoring-Investigation-Analytics\data\output\investigation_queue.csv"), [Delimiter = ",", Columns = 17, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"transaction_id", Int64.Type}, {"step", Int64.Type}, {"transaction_hour", Int64.Type}, {"transaction_period", type text}, {"type", type text}, {"amount", type number}, {"nameOrig", type text}, {"nameDest", type text}, {"oldbalanceOrg", type number}, {"newbalanceOrig", type number}, {"oldbalanceDest", type number}, {"newbalanceDest", type number}, {"isFraud", Int64.Type}, {"isFlaggedFraud", Int64.Type}, {"risk_score", Int64.Type}, {"risk_category", type text}, {"risk_reasons", type text}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_ResultType = Table
+

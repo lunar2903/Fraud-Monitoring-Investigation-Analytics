@@ -1,0 +1,137 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "3db6ffe82994221e7f2a",
+  "position": {
+    "x": 1372.1854304635763,
+    "y": 267.0198675496689,
+    "z": 3002,
+    "height": 249.00662251655629,
+    "width": 505.43046357615896,
+    "tabOrder": 3002
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fraud_by_type"
+                    }
+                  },
+                  "Property": "type"
+                }
+              },
+              "queryRef": "fraud_by_type.type",
+              "nativeQueryRef": "type",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fraud_by_type"
+                        }
+                      },
+                      "Property": "fraud_rate_percent"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(fraud_by_type.fraud_rate_percent)",
+              "nativeQueryRef": "Average of fraud_rate_percent"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "fraud_by_type"
+                      }
+                    },
+                    "Property": "fraud_rate_percent"
+                  }
+                },
+                "Function": 1
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Fraud Rate by Transaction Type'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "bafac17f598a398ab262",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fraud_by_type"
+              }
+            },
+            "Property": "type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f8491725378a73152c32",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fraud_by_type"
+                  }
+                },
+                "Property": "fraud_rate_percent"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

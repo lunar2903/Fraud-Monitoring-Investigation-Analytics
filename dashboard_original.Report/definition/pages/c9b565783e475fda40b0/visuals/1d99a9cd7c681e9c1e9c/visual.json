@@ -1,0 +1,77 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "1d99a9cd7c681e9c1e9c",
+  "position": {
+    "x": 493.43862167982775,
+    "y": 181.93826274228286,
+    "z": 3004,
+    "height": 85,
+    "width": 467,
+    "tabOrder": 3004
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fraud_by_type"
+                    }
+                  },
+                  "Property": "type"
+                }
+              },
+              "queryRef": "fraud_by_type.type",
+              "nativeQueryRef": "type",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "dd688cefea83c89204e5",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fraud_by_type"
+              }
+            },
+            "Property": "type"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

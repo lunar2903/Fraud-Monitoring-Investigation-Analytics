@@ -16,3 +16,10 @@ venv/
 
 # VS Code
 .vscode/
+
+# Dataset files - keep large CSVs out of Git
+data/*.csv
+data/**/*.csv
+
+# Power BI temporary and backup files
+*.pbix~

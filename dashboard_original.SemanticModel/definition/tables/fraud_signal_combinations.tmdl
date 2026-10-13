@@ -1,0 +1,61 @@
+table fraud_signal_combinations
+	lineageTag: 6b761af3-079f-47be-bc1d-e571dab44454
+
+	column signal_combination
+		dataType: string
+		lineageTag: 3627ae5b-a1e5-4c9d-98be-03038e2d1c2b
+		summarizeBy: none
+		sourceColumn: signal_combination
+
+		annotation SummarizationSetBy = Automatic
+
+	column flagged_transactions
+		dataType: int64
+		formatString: 0
+		lineageTag: a47a06b4-4d81-4ba0-95cf-d0231c02a389
+		summarizeBy: sum
+		sourceColumn: flagged_transactions
+
+		annotation SummarizationSetBy = Automatic
+
+	column fraud_captured
+		dataType: int64
+		formatString: 0
+		lineageTag: 0332dcb5-9a93-4c99-8c59-852b2f4ba915
+		summarizeBy: sum
+		sourceColumn: fraud_captured
+
+		annotation SummarizationSetBy = Automatic
+
+	column signal_fraud_rate_percent
+		dataType: double
+		lineageTag: 2b39158a-0bce-4817-930a-b4b8bb326ca3
+		summarizeBy: sum
+		sourceColumn: signal_fraud_rate_percent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fraud_capture_rate_percent
+		dataType: double
+		lineageTag: a527a560-01dd-4fd7-999b-322ea259dac1
+		summarizeBy: sum
+		sourceColumn: fraud_capture_rate_percent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fraud_signal_combinations = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\Project\Fraud-Monitoring-Investigation-Analytics\data\output\fraud_signal_combinations.csv"), [Delimiter = ",", Columns = 5, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"signal_combination", type text}, {"flagged_transactions", Int64.Type}, {"fraud_captured", Int64.Type}, {"signal_fraud_rate_percent", type number}, {"fraud_capture_rate_percent", type number}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_ResultType = Table
+
