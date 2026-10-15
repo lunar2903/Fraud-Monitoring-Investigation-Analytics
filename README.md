@@ -56,7 +56,7 @@ Fraud-Monitoring-Investigation-Analytics/
 ### How to Run
 1. Clone the repository:
    ```bash
-   git clone [<repository-url>](https://github.com/lunar2903/Fraud-Monitoring-Investigation-Analytics.git)
+   git clone https://github.com/lunar2903/Fraud-Monitoring-Investigation-Analytics.git
    ```
 2. Install the Python dependencies required by the scripts.
 3. Ensure Git LFS is installed to retrieve the large CSV dataset.
